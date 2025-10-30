@@ -42,26 +42,7 @@ public class PriorityHeap {
             currentIndex = parent(currentIndex);
         }
     }
-
-    
-    public Patient poll() {
-        if (heap.isEmpty()) {
-            return null;
-        }
-
-        Patient highest = heap.get(0);
-        Patient last = heap.remove(heap.size() - 1);
-
-        if (!heap.isEmpty()) {
-            heap.set(0, last);
-            bubbleDown(0);
-        }
-
-        return highest;
-    }
-
-    
-   
+ 
     private void bubbleDown(int currentIndex) {
         while (true) {
             int left = leftChild(currentIndex);
@@ -96,8 +77,21 @@ public class PriorityHeap {
     
      //--------------2.4------------------------------
     public Patient nextPatient(){
-        return poll();
+        if (heap.isEmpty()) {
+            return null;
+        }
+
+        Patient highest = heap.get(0);
+        Patient last = heap.remove(heap.size() - 1);
+
+        if (!heap.isEmpty()) {
+            heap.set(0, last);
+            bubbleDown(0);
+        }
+
+        return highest;
     }
     
 }
+
     
